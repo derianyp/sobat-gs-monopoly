@@ -27,6 +27,7 @@ body{
 
 #boardWrapper{
     position:relative;
+    display:inline-block;
 }
 
 #board{
@@ -121,7 +122,9 @@ button{
     font-weight:bold;
     border:2px solid white;
     color:white;
-    z-index:100;
+    z-index:9999;
+    top:0;
+    left:0;
 }
 
 .red{
