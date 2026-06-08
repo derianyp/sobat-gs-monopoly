@@ -1,47 +1,157 @@
-body{
+*{
     margin:0;
-    background:#111;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#101010;
     color:white;
-    font-family:Arial, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 .container{
     display:flex;
-    height:100vh;
+    min-height:100vh;
 }
 
 .board-section{
     flex:2;
+    background:#000;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#000;
+    padding:15px;
+    overflow:auto;
+}
+
+#boardWrapper{
+    position:relative;
 }
 
 #board{
-    max-width:95%;
-    max-height:95vh;
+    width:850px;
+    max-width:100%;
     border-radius:15px;
+    box-shadow:0 0 20px rgba(255,255,255,0.15);
 }
 
 .panel{
     flex:1;
-    background:#1c1c1c;
+    background:#1b1b1b;
     padding:20px;
+    overflow-y:auto;
+}
+
+.panel h1{
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.panel h3{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.card{
+    background:#2b2b2b;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+select{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
 }
 
 button{
     width:100%;
-    padding:15px;
-    font-size:20px;
-    cursor:pointer;
+    padding:14px;
+    font-size:18px;
     border:none;
     border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#startBtn{
+    background:#00a651;
+    color:white;
+}
+
+#rollBtn{
+    background:#f0b400;
+}
+
+#rollBtn:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
+}
+
+#players{
+    line-height:1.9;
 }
 
 #log{
-    background:#333;
-    padding:10px;
-    min-height:120px;
+    background:#111;
     border-radius:10px;
+    padding:12px;
+    min-height:140px;
+    line-height:1.6;
+}
+
+.token{
+    position:absolute;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    text-align:center;
+    line-height:28px;
+    font-weight:bold;
+    border:2px solid white;
+    color:white;
+    z-index:100;
+}
+
+.red{
+    background:red;
+}
+
+.blue{
+    background:#0066ff;
+}
+
+.green{
+    background:#00aa44;
+}
+
+.yellow{
+    background:#ffcc00;
+    color:black;
+}
+
+@media(max-width:1200px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .panel{
+        width:100%;
+    }
+
+    #board{
+        width:100%;
+    }
 }
