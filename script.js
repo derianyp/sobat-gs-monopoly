@@ -14,40 +14,46 @@ const token4 = document.getElementById("player4");
 let players = [];
 let currentPlayer = 0;
 
-const positions = [
+const tokenList = [
+    token1,
+    token2,
+    token3,
+    token4
+];
 
-    {x:40,y:770},   // 1 START
-    {x:110,y:770},
-    {x:180,y:770},
-    {x:250,y:770},
-    {x:320,y:770},
-    {x:390,y:770},
-    {x:460,y:770},
-    {x:530,y:770},
+const boardTiles = [
+    "START",
+    "Warung Babeh",
+    "Tambal Ban",
+    "Event Kampung",
+    "Angkringan Balwas",
+    "PDAM",
+    "Menang EP EP-an",
+    "Kas Kampung",
 
-    {x:620,y:770},
-    {x:720,y:700},
-    {x:720,y:620},
-    {x:720,y:540},
-    {x:720,y:460},
-    {x:720,y:380},
-    {x:720,y:300},
+    "Warjok",
+    "Laundry",
+    "Event Kampung",
+    "Toko HP",
+    "Bengkel",
+    "SPBU Mejasem",
+    "Bos Muda",
 
-    {x:720,y:210},
+    "Cafe",
+    "Galaxy Playstation",
+    "Event Kampung",
+    "Mbah Arel",
+    "Toko Bangunan",
 
-    {x:620,y:90},
-    {x:530,y:90},
-    {x:450,y:90},
-    {x:370,y:90},
-    {x:290,y:90},
-    {x:210,y:90},
-    {x:130,y:90},
+    "Rumah Mas Rian",
+    "Penjara",
+    "RSUD Kardinah",
+    "Kos-Kosan",
 
-    {x:40,y:90},
-    {x:40,y:180},
-    {x:40,y:270},
-    {x:40,y:360},
-    {x:40,y:450}
+    "Event Kampung",
+    "Indomaret",
+    "Alfamart",
+    "Ruko"
 ];
 
 startBtn.addEventListener("click", startGame);
@@ -62,12 +68,12 @@ function startGame(){
 
     players = [];
 
-    for(let i=1;i<=totalPlayers;i++){
+    for(let i = 1; i <= totalPlayers; i++){
 
         players.push({
-            name:"Pemain " + i,
-            money:200000,
-            position:0
+            name: "Pemain " + i,
+            money: 200000,
+            position: 0
         });
 
     }
@@ -81,15 +87,16 @@ function startGame(){
         "Giliran: " + players[0].name;
 
     logDiv.innerHTML =
-        "Permainan dimulai. Modal awal Rp200.000";
+        "Permainan dimulai.<br>" +
+        "Modal awal Rp200.000";
 
     rollBtn.disabled = false;
 }
 
 function rollDice(){
 
-    let dice =
-        Math.floor(Math.random()*6)+1;
+    const dice =
+        Math.floor(Math.random() * 6) + 1;
 
     diceResult.innerHTML =
         "🎲 " + dice;
@@ -109,14 +116,8 @@ function rollDice(){
             player.name +
             " melewati START dan mendapat Rp15.000";
     }
-    else{
 
-        logDiv.innerHTML =
-            player.name +
-            " maju " +
-            dice +
-            " langkah";
-    }
+    processTile(player);
 
     updatePlayers();
     updateTokens();
@@ -132,18 +133,91 @@ function rollDice(){
         players[currentPlayer].name;
 }
 
+function processTile(player){
+
+    const tile =
+        boardTiles[player.position];
+
+    switch(tile){
+
+        case "Kas Kampung":
+            player.money -= 5000;
+            logDiv.innerHTML =
+                player.name +
+                " masuk Kas Kampung.<br>" +
+                "Bayar Rp5.000";
+            break;
+
+        case "Menang EP EP-an":
+            player.money += 10000;
+            logDiv.innerHTML =
+                player.name +
+                " menang EP EP-an.<br>" +
+                "Dapat Rp10.000";
+            break;
+
+        case "Rumah Mas Rian":
+            player.money += 10000;
+            logDiv.innerHTML =
+                player.name +
+                " mampir Rumah Mas Rian.<br>" +
+                "Dapat Rp10.000";
+            break;
+
+        case "SPBU Mejasem":
+            player.money -= 10000;
+            logDiv.innerHTML =
+                player.name +
+                " isi bensin di SPBU.<br>" +
+                "Bayar Rp10.000";
+            break;
+
+        case "RSUD Kardinah":
+            player.money -= 10000;
+            logDiv.innerHTML =
+                player.name +
+                " berobat ke RSUD.<br>" +
+                "Bayar Rp10.000";
+            break;
+
+        case "Event Kampung":
+            logDiv.innerHTML =
+                player.name +
+                " mengambil kartu Event Kampung";
+            break;
+
+        case "Penjara":
+            logDiv.innerHTML =
+                player.name +
+                " masuk Penjara";
+            break;
+
+        case "Bos Muda":
+            logDiv.innerHTML =
+                player.name +
+                " sedang menjadi Bos Muda";
+            break;
+
+        default:
+            logDiv.innerHTML =
+                player.name +
+                " berhenti di " +
+                tile;
+    }
+}
+
 function updatePlayers(){
 
     let html = "";
 
-    players.forEach(player=>{
+    players.forEach(player => {
 
         html += `
-        <div>
-            ${player.name}
-            :
-            Rp${player.money.toLocaleString("id-ID")}
-        </div>
+            <div>
+                ${player.name}
+                :
+                Rp${player.money.toLocaleString("id-ID")}
+            </div>
         `;
 
     });
@@ -151,30 +225,89 @@ function updatePlayers(){
     playersDiv.innerHTML = html;
 }
 
+function getBoardPositions(){
+
+    const board =
+        document.getElementById("board");
+
+    const w =
+        board.clientWidth;
+
+    const h =
+        board.clientHeight;
+
+    return [
+
+        // bawah
+        {x:w*0.03,y:h*0.90},
+        {x:w*0.13,y:h*0.90},
+        {x:w*0.22,y:h*0.90},
+        {x:w*0.32,y:h*0.90},
+        {x:w*0.42,y:h*0.90},
+        {x:w*0.52,y:h*0.90},
+        {x:w*0.62,y:h*0.90},
+        {x:w*0.72,y:h*0.90},
+
+        // kanan
+        {x:w*0.90,y:h*0.82},
+        {x:w*0.90,y:h*0.72},
+        {x:w*0.90,y:h*0.62},
+        {x:w*0.90,y:h*0.52},
+        {x:w*0.90,y:h*0.42},
+        {x:w*0.90,y:h*0.32},
+
+        // bos muda
+        {x:w*0.90,y:h*0.14},
+
+        // atas
+        {x:w*0.72,y:h*0.04},
+        {x:w*0.62,y:h*0.04},
+        {x:w*0.52,y:h*0.04},
+        {x:w*0.42,y:h*0.04},
+        {x:w*0.32,y:h*0.04},
+        {x:w*0.22,y:h*0.04},
+        {x:w*0.12,y:h*0.04},
+
+        // kiri
+        {x:w*0.03,y:h*0.12},
+        {x:w*0.03,y:h*0.24},
+        {x:w*0.03,y:h*0.36},
+        {x:w*0.03,y:h*0.48},
+        {x:w*0.03,y:h*0.60},
+        {x:w*0.03,y:h*0.72}
+    ];
+
+}
+
 function updateTokens(){
 
-    token1.style.display = "none";
-    token2.style.display = "none";
-    token3.style.display = "none";
-    token4.style.display = "none";
+    const positions =
+        getBoardPositions();
 
-    const tokenList =
-        [token1,token2,token3,token4];
+    tokenList.forEach(token => {
+        token.style.display = "none";
+    });
 
     players.forEach((player,index)=>{
 
-    const token =
-        tokenList[index];
+        const token =
+            tokenList[index];
 
-    token.style.display = "block";
+        token.style.display =
+            "block";
 
-    token.style.left =
-        (positions[player.position].x + (index * 12))
-        + "px";
+        token.style.left =
+            (positions[player.position].x + (index * 10))
+            + "px";
 
-    token.style.top =
-        (positions[player.position].y + (index * 12))
-        + "px";
+        token.style.top =
+            (positions[player.position].y + (index * 10))
+            + "px";
 
-});
+    });
 }
+
+window.addEventListener(
+    "resize",
+    updateTokens
+);
