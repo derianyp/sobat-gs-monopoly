@@ -163,16 +163,18 @@ function updateTokens(){
 
     players.forEach((player,index)=>{
 
-        const token =
-            tokenList[index];
+    const token =
+        tokenList[index];
 
-        token.style.display = "block";
+    token.style.display = "block";
 
-        token.style.left =
-            positions[player.position].x + "px";
+    token.style.left =
+        (positions[player.position].x + (index * 12))
+        + "px";
 
-        token.style.top =
-            positions[player.position].y + "px";
+    token.style.top =
+        (positions[player.position].y + (index * 12))
+        + "px";
 
-    });
+});
 }
