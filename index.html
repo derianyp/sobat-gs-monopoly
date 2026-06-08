@@ -1,86 +1,143 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>⚽ SOBAT GS - Monopoli Kampung</title>
 
-<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ SOBAT GS - Monopoli Kampung</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <div class="board-section">
+        <!-- PAPAN -->
+        <div class="board-section">
 
-        <div id="boardWrapper">
+            <div id="boardWrapper">
 
-            <img src="board2.png" id="board">
+                <img src="board2.png" id="board">
 
-            <div id="player1" class="token red">1</div>
-            <div id="player2" class="token blue">2</div>
-            <div id="player3" class="token green">3</div>
-            <div id="player4" class="token yellow">4</div>
+                <!-- TOKEN -->
+                <div id="player1" class="token red">1</div>
+                <div id="player2" class="token blue">2</div>
+                <div id="player3" class="token green">3</div>
+                <div id="player4" class="token yellow">4</div>
+
+            </div>
+
+        </div>
+
+        <!-- PANEL -->
+        <div class="panel">
+
+            <div class="logo-box">
+                <h1>⚽ SOBAT GS ⚽</h1>
+                <h3>Kampung Griya Santika</h3>
+            </div>
+
+            <!-- SETUP GAME -->
+            <div class="card">
+
+                <h2>Mulai Permainan</h2>
+
+                <label>Jumlah Pemain</label>
+
+                <select id="playerCount">
+                    <option value="2">2 Pemain</option>
+                    <option value="3">3 Pemain</option>
+                    <option value="4">4 Pemain</option>
+                </select>
+
+                <button id="startBtn">
+                    ▶ Mulai Permainan
+                </button>
+
+            </div>
+
+            <!-- GILIRAN -->
+            <div class="card">
+
+                <h2 id="currentPlayer">
+                    Giliran : -
+                </h2>
+
+                <h1 id="diceResult">
+                    🎲 -
+                </h1>
+
+                <button id="rollBtn" disabled>
+                    🎲 Lempar Dadu
+                </button>
+
+            </div>
+
+            <!-- INFO PETAK -->
+            <div class="card">
+
+                <h2>Petak Saat Ini</h2>
+
+                <div id="currentTile">
+                    Belum ada aktivitas
+                </div>
+
+            </div>
+
+            <!-- PEMAIN -->
+            <div class="card">
+
+                <h2>Daftar Pemain</h2>
+
+                <div id="players">
+
+                </div>
+
+            </div>
+
+            <!-- LOG -->
+            <div class="card">
+
+                <h2>Aktivitas</h2>
+
+                <div id="log">
+
+                    Selamat datang di SOBAT GS
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
-    <div class="panel">
+    <!-- POPUP -->
+    <div id="modal" class="modal hidden">
 
-        <h1>⚽ SOBAT GS</h1>
-        <h3>Kampung Griya Santika</h3>
+        <div class="modal-content">
 
-        <div class="card">
-            <label>Jumlah Pemain</label>
-
-            <select id="playerCount">
-                <option value="2">2 Pemain</option>
-                <option value="3">3 Pemain</option>
-                <option value="4">4 Pemain</option>
-            </select>
-
-            <button id="startBtn">
-                Mulai Permainan
-            </button>
-        </div>
-
-        <div class="card">
-            <h2 id="currentPlayer">
-                Giliran: -
+            <h2 id="modalTitle">
+                Judul
             </h2>
 
-            <h2 id="diceResult">
-                🎲 -
-            </h2>
+            <div id="modalBody">
 
-            <button id="rollBtn" disabled>
-                🎲 Lempar Dadu
-            </button>
-        </div>
+                Isi Popup
 
-        <div class="card">
-            <h3>Daftar Pemain</h3>
-
-            <div id="players">
-                Belum ada pemain
             </div>
-        </div>
 
-        <div class="card">
-            <h3>Aktivitas</h3>
+            <div id="modalButtons">
 
-            <div id="log">
-                Klik "Mulai Permainan"
             </div>
+
         </div>
 
     </div>
 
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
