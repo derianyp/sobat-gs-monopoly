@@ -5,7 +5,7 @@
 }
 
 body{
-    background:#101010;
+    background:#111;
     color:white;
     font-family:Arial, Helvetica, sans-serif;
 }
@@ -14,6 +14,10 @@ body{
     display:flex;
     min-height:100vh;
 }
+
+/* =====================
+   PAPAN
+===================== */
 
 .board-section{
     flex:2;
@@ -34,55 +38,105 @@ body{
     width:850px;
     max-width:100%;
     border-radius:15px;
-    box-shadow:0 0 20px rgba(255,255,255,0.15);
+    box-shadow:0 0 25px rgba(255,255,255,.15);
 }
+
+/* =====================
+   TOKEN
+===================== */
+
+.token{
+    position:absolute;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    text-align:center;
+    line-height:30px;
+    font-weight:bold;
+    border:2px solid #fff;
+    z-index:9999;
+    display:none;
+}
+
+.red{
+    background:#e53935;
+}
+
+.blue{
+    background:#1e88e5;
+}
+
+.green{
+    background:#43a047;
+}
+
+.yellow{
+    background:#fdd835;
+    color:#000;
+}
+
+/* =====================
+   PANEL
+===================== */
 
 .panel{
     flex:1;
-    background:#1b1b1b;
+    background:#1c1c1c;
     padding:20px;
     overflow-y:auto;
 }
 
-.panel h1{
-    text-align:center;
-    margin-bottom:5px;
-}
-
-.panel h3{
+.logo-box{
     text-align:center;
     margin-bottom:15px;
 }
+
+.logo-box h1{
+    margin-bottom:5px;
+}
+
+.logo-box h3{
+    color:#bbb;
+}
+
+/* =====================
+   CARD
+===================== */
 
 .card{
     background:#2b2b2b;
     padding:15px;
     border-radius:12px;
     margin-bottom:15px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.card h2{
+    margin-bottom:12px;
 }
 
 label{
     display:block;
-    margin-bottom:10px;
+    margin-bottom:8px;
     font-weight:bold;
 }
 
 select{
     width:100%;
-    padding:10px;
-    margin-bottom:10px;
+    padding:12px;
     border:none;
     border-radius:8px;
+    margin-bottom:10px;
     font-size:16px;
 }
 
 button{
     width:100%;
     padding:14px;
-    font-size:18px;
     border:none;
     border-radius:10px;
     cursor:pointer;
+    font-size:17px;
     font-weight:bold;
 }
 
@@ -92,57 +146,104 @@ button{
 }
 
 #rollBtn{
-    background:#f0b400;
+    background:#f4b400;
+    color:black;
 }
 
 #rollBtn:disabled{
-    opacity:0.5;
+    opacity:.5;
     cursor:not-allowed;
 }
 
 #players{
-    line-height:1.9;
+    line-height:2;
+}
+
+#currentTile{
+    line-height:1.7;
+    min-height:60px;
 }
 
 #log{
     background:#111;
-    border-radius:10px;
     padding:12px;
-    min-height:140px;
-    line-height:1.6;
+    border-radius:10px;
+    min-height:180px;
+    line-height:1.7;
+    overflow:auto;
 }
 
-.token{
-    position:absolute;
-    width:32px;
-    height:32px;
-    border-radius:50%;
+/* =====================
+   MODAL
+===================== */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+.hidden{
+    display:none;
+}
+
+.modal-content{
+    width:90%;
+    max-width:500px;
+    background:#222;
+    border-radius:15px;
+    padding:20px;
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.modal-content h2{
+    margin-bottom:15px;
     text-align:center;
-    line-height:28px;
+}
+
+#modalBody{
+    line-height:1.8;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+#modalButtons{
+    display:flex;
+    gap:10px;
+}
+
+#modalButtons button{
+    flex:1;
+}
+
+/* =====================
+   STATUS PEMAIN
+===================== */
+
+.player-card{
+    background:#111;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:8px;
+}
+
+.player-money{
+    color:#90ee90;
     font-weight:bold;
-    border:2px solid white;
-    color:white;
-    z-index:9999;
-    top:0;
-    left:0;
 }
 
-.red{
-    background:red;
+.player-status{
+    color:#ccc;
+    font-size:13px;
 }
 
-.blue{
-    background:#0066ff;
-}
-
-.green{
-    background:#00aa44;
-}
-
-.yellow{
-    background:#ffcc00;
-    color:black;
-}
+/* =====================
+   RESPONSIVE
+===================== */
 
 @media(max-width:1200px){
 
