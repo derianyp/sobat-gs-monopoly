@@ -1,0 +1,47 @@
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+.container{
+    display:flex;
+    height:100vh;
+}
+
+.board-section{
+    flex:2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#000;
+}
+
+#board{
+    max-width:95%;
+    max-height:95vh;
+    border-radius:15px;
+}
+
+.panel{
+    flex:1;
+    background:#1c1c1c;
+    padding:20px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    font-size:20px;
+    cursor:pointer;
+    border:none;
+    border-radius:10px;
+}
+
+#log{
+    background:#333;
+    padding:10px;
+    min-height:120px;
+    border-radius:10px;
+}
